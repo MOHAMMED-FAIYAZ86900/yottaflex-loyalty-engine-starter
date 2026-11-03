@@ -441,41 +441,63 @@ Then activate again:
 .\.venv\Scripts\Activate.ps1
 ```
 
-### 9.5 Install test dependency
 
-The core database and CSV/JSON operations use Python standard-library modules. Install pytest to run the automated tests:
+### 9.5 Install the project and development dependencies
+
+Upgrade pip:
 
 ```powershell
 python -m pip install --upgrade pip
-python -m pip install pytest
 ```
 
-If a `requirements.txt` file is included in the repository, install its listed dependencies as well:
+Install the project in editable mode with development dependencies:
 
 ```powershell
-python -m pip install -r requirements.txt
+python -m pip install -e ".[dev]"
 ```
 
-### 9.6 Verify the environment
+This command installs:
+
+- The YottaFlex Loyalty Engine Python package.
+- The package dependencies declared in `pyproject.toml`.
+- pytest for automated testing.
+- The `loyalty` command-line entry point.
+
+Editable installation means that changes to the source code under `src/` are available without reinstalling the project.
+
+### 9.6 Verify the installation
+
+Verify the installed package:
 
 ```powershell
-python --version
+python -m pip show yottaflex-loyalty-engine
+```
+
+Verify the CLI:
+
+```powershell
+loyalty --help
+```
+
+Verify pytest:
+
+```powershell
 python -m pytest --version
 ```
 
-Run the tests:
+Run the automated test suite:
 
 ```powershell
 python -m pytest -q
 ```
 
-Expected result for the verified implementation:
+Expected test result:
 
 ```text
 13 passed
 ```
 
----
+If the `loyalty` command is not recognized, close and reopen the terminal, reactivate `.venv`, and retry.
 
 ## 10. Running the Application
 
@@ -777,43 +799,76 @@ The repository contains the project implementation, tests, documentation, and se
 
 ---
 
+
 ## 21. Quick Start
 
-For a new local setup, execute these commands in PowerShell:
+The following commands provide a clean installation and execution workflow using Windows PowerShell.
+
+### Clone the repository
 
 ```powershell
 git clone https://github.com/MOHAMMED-FAIYAZ86900/yottaflex-loyalty-engine-starter.git
 
 cd yottaflex-loyalty-engine-starter
+```
 
+### Create and activate the virtual environment
+
+```powershell
 python -m venv .venv
 
 .\.venv\Scripts\Activate.ps1
-
-python -m pip install --upgrade pip
-
-python -m pip install pytest
-
-python -m pytest -q
-
-python -m loyalty.cli --db data/loyalty_phase4.db --customers 20000 --orders 100000 --seed 20261022
-
-python -m loyalty.cli --db data/loyalty_phase4.db --validate-only
 ```
 
-To generate the additional edge-case fixtures:
+If PowerShell blocks activation:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
+.\.venv\Scripts\Activate.ps1
+```
+
+### Install the project
+
+```powershell
+python -m pip install --upgrade pip
+
+python -m pip install -e ".[dev]"
+```
+
+### Run automated tests
+
+```powershell
+python -m pytest -q
+```
+
+### Generate a fresh dataset
+
+Use a new database filename to avoid overwriting an existing generated dataset:
+
+```powershell
+loyalty --db data/loyalty_fresh.db --customers 20000 --orders 100000 --seed 20261022
+```
+
+### Validate the generated dataset
+
+```powershell
+loyalty --db data/loyalty_fresh.db --validate-only
+```
+
+### Generate edge-case fixtures
 
 ```powershell
 python scripts/generate_edge_cases.py
 ```
 
-To export the dataset:
+### Export the dataset
 
 ```powershell
 python scripts/export_dataset.py
 ```
 
----
+**Important:** Run all commands from the repository root with the virtual environment activated. Full dataset generation requires a fresh database because the generator does not permit generation against an already populated customer table.
 
 ## 22. Final Summary
 
