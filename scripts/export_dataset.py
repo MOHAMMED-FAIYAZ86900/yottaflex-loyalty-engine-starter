@@ -1,4 +1,3 @@
-﻿
 import csv
 import gzip
 import hashlib
@@ -26,7 +25,7 @@ OUT.mkdir(parents=True, exist_ok=True)
 # ---------------------------------------------------------
 
 def sha256_file(path: Path) -> str:
-    """Calculate SHA-256 without loading the entire file into memory."""
+    """Calculate SHA-256 without loading the entire file."""
     digest = hashlib.sha256()
 
     with path.open("rb") as file:
@@ -36,13 +35,12 @@ def sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
-def get_git_index_files() -> set[str]:
-    """
-    Return repository-relative paths staged or tracked in Git's index.
+def relative_path(path: Path) -> str:
+    return path.relative_to(ROOT).as_posix()
 
-    A file in this set is not automatically guaranteed to have been
-    pushed to GitHub. The final push must still be verified.
-    """
+
+def get_git_index_files() -> set[str]:
+    """Return paths currently staged or tracked in Git's index."""
     try:
         result = subprocess.run(
             ["git", "-C", str(ROOT), "ls-files", "--cached", "-z"],
@@ -60,13 +58,8 @@ def get_git_index_files() -> set[str]:
         return set()
 
 
-def relative_path(path: Path) -> str:
-    """Return a repository-relative POSIX path."""
-    return path.relative_to(ROOT).as_posix()
-
-
-def compress_csv(source: Path, destination: Path) -> None:
-    """Create a deterministic gzip file with a fixed modification time."""
+def compress_file(source: Path, destination: Path) -> None:
+    """Create deterministic gzip output with no source filename or timestamp."""
     with source.open("rb") as source_file:
         with destination.open("wb") as raw_output:
             with gzip.GzipFile(
@@ -79,20 +72,50 @@ def compress_csv(source: Path, destination: Path) -> None:
                 shutil.copyfileobj(source_file, compressed)
 
 
-def export_metadata(path: Path, git_files: set[str]) -> dict:
-    """Return size, hash, format, and Git-index status for one export."""
-    relative = relative_path(path)
+def verify_gzip_matches_source(
+    source: Path,
+    compressed_path: Path,
+) -> bool:
+    """Verify decompressed gzip content matches the source byte-for-byte."""
+    with source.open("rb") as original:
+        with gzip.open(compressed_path, "rb") as decompressed:
+            while True:
+                original_chunk = original.read(1024 * 1024)
+                decompressed_chunk = decompressed.read(1024 * 1024)
 
+                if original_chunk != decompressed_chunk:
+                    return False
+
+                if not original_chunk:
+                    return True
+
+
+def export_format(path: Path) -> str:
+    name = path.name.lower()
+
+    if name.endswith(".sql.gz"):
+        return "SQL_GZIP"
+
+    if name.endswith(".csv.gz"):
+        return "CSV_GZIP"
+
+    return path.suffix.lstrip(".").upper()
+
+
+def export_metadata(path: Path, git_files: set[str]) -> dict:
+    relative = relative_path(path)
     tracked = relative in git_files
 
-    if path.suffix == ".gz":
-        file_format = "CSV_GZIP"
+    if path.name == "loyalty_dataset.sql.gz":
+        publication_intent = "public_compressed_sql_export"
+    elif path.name == "loyalty_dataset.sql":
+        publication_intent = "local_uncompressed_sql_source"
     else:
-        file_format = path.suffix.lstrip(".").upper()
+        publication_intent = "dataset_export"
 
     return {
         "path": relative,
-        "format": file_format,
+        "format": export_format(path),
         "sha256": sha256_file(path),
         "bytes": path.stat().st_size,
         "repository_status": (
@@ -100,6 +123,7 @@ def export_metadata(path: Path, git_files: set[str]) -> dict:
             if tracked
             else "local_only_not_tracked"
         ),
+        "publication_intent": publication_intent,
     }
 
 
@@ -134,10 +158,6 @@ try:
             "foreign-key violations."
         )
 
-    # -----------------------------------------------------
-    # Identify tables
-    # -----------------------------------------------------
-
     tables = [
         row[0]
         for row in conn.execute("""
@@ -152,10 +172,8 @@ try:
     if not tables:
         raise RuntimeError("No application tables found.")
 
-    git_files = get_git_index_files()
-
     manifest = {
-        "manifest_version": "2.0",
+        "manifest_version": "3.0",
         "project": "YottaFlex Loyalty Engine",
         "database": relative_path(DB),
         "database_integrity": integrity,
@@ -174,31 +192,44 @@ try:
                 "GitHub. Verify the remote repository after pushing."
             ),
         },
+        "sql_export": {
+            "uncompressed_path": (
+                "exports/dataset/loyalty_dataset.sql"
+            ),
+            "compressed_path": (
+                "exports/dataset/loyalty_dataset.sql.gz"
+            ),
+            "compression": "gzip",
+            "compression_level": 9,
+            "deterministic_timestamp": 0,
+            "decompression_verified": False,
+        },
         "manifest_note": (
             "The manifest itself is excluded from its own exports "
             "hash list to avoid recursive self-hashing."
         ),
     }
 
+    generated_paths = []
+
     # -----------------------------------------------------
-    # Export each table
+    # Export each table as CSV and JSON
     # -----------------------------------------------------
 
     print("Starting dataset export...")
     print("------------------------------------")
 
-    generated_paths = []
-
     for table in tables:
         cursor = conn.execute(f'SELECT * FROM "{table}"')
-        columns = [description[0] for description in cursor.description]
-
+        columns = [
+            description[0]
+            for description in cursor.description
+        ]
         rows = [dict(row) for row in cursor.fetchall()]
 
         csv_path = OUT / f"{table}.csv"
         json_path = OUT / f"{table}.json"
 
-        # CSV export
         with csv_path.open(
             "w",
             newline="",
@@ -212,7 +243,6 @@ try:
                 writer.writeheader()
                 writer.writerows(rows)
 
-        # JSON export
         with json_path.open("w", encoding="utf-8") as file:
             json.dump(
                 rows,
@@ -232,28 +262,35 @@ try:
         print(f"{table}: {len(rows):,} rows")
 
     # -----------------------------------------------------
-    # Compress large points transaction CSV
+    # Compress points transaction CSV
     # -----------------------------------------------------
 
     transaction_csv = OUT / "points_transaction.csv"
     transaction_gzip = OUT / "points_transaction.csv.gz"
 
     if transaction_csv.exists():
-        compress_csv(transaction_csv, transaction_gzip)
-        generated_paths.append(transaction_gzip)
+        compress_file(transaction_csv, transaction_gzip)
 
-        print(
-            "Compressed points transaction CSV:",
-            transaction_gzip.name,
-        )
+        if not verify_gzip_matches_source(
+            transaction_csv,
+            transaction_gzip,
+        ):
+            raise RuntimeError(
+                "Points transaction CSV gzip verification failed."
+            )
+
+        generated_paths.append(transaction_gzip)
+        print("Verified compressed transaction CSV.")
 
     # -----------------------------------------------------
-    # SQL dump
+    # Generate SQL dump
     # -----------------------------------------------------
 
     sql_path = OUT / "loyalty_dataset.sql"
 
-    with sql_path.open("w", encoding="utf-8") as file:
+    print("Generating SQL dump...")
+
+    with sql_path.open("w", encoding="utf-8", newline="\n") as file:
         for line in conn.iterdump():
             file.write(line + "\n")
 
@@ -262,10 +299,41 @@ try:
     print("SQL dump generated:", sql_path.name)
 
     # -----------------------------------------------------
+    # Compress SQL dump
+    # -----------------------------------------------------
+
+    sql_gzip_path = OUT / "loyalty_dataset.sql.gz"
+
+    print("Compressing SQL dump...")
+
+    compress_file(sql_path, sql_gzip_path)
+
+    if not verify_gzip_matches_source(sql_path, sql_gzip_path):
+        raise RuntimeError(
+            "SQL gzip verification failed: decompressed content "
+            "does not match the original SQL dump."
+        )
+
+    generated_paths.append(sql_gzip_path)
+
+    manifest["sql_export"]["decompression_verified"] = True
+    manifest["sql_export"]["original_bytes"] = sql_path.stat().st_size
+    manifest["sql_export"]["compressed_bytes"] = (
+        sql_gzip_path.stat().st_size
+    )
+    manifest["sql_export"]["original_sha256"] = sha256_file(sql_path)
+    manifest["sql_export"]["compressed_sha256"] = (
+        sha256_file(sql_gzip_path)
+    )
+
+    print("SQL compression verified.")
+    print("Original SQL bytes:", sql_path.stat().st_size)
+    print("Compressed SQL bytes:", sql_gzip_path.stat().st_size)
+
+    # -----------------------------------------------------
     # Build export metadata
     # -----------------------------------------------------
 
-    # Refresh Git index information after all file generation.
     git_files = get_git_index_files()
 
     for path in generated_paths:
@@ -324,8 +392,8 @@ try:
         print(" -", path)
 
     print(
-        "\nIMPORTANT: GitHub publication must be verified after "
-        "the commit and push."
+        "\nIMPORTANT: Verify GitHub publication after committing "
+        "and pushing."
     )
 
 finally:

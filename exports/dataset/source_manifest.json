@@ -1,5 +1,5 @@
 {
-  "manifest_version": "2.0",
+  "manifest_version": "3.0",
   "project": "YottaFlex Loyalty Engine",
   "database": "data/loyalty_phase4.db",
   "database_integrity": "ok",
@@ -167,196 +167,232 @@
       "format": "CSV",
       "sha256": "c6fb773b73d6cb073419a2e6abffede97113f0e6670228fb17deb4c0e8528d81",
       "bytes": 4130826,
-      "repository_status": "tracked_in_git_index"
+      "repository_status": "tracked_in_git_index",
+      "publication_intent": "dataset_export"
     },
     "exports/dataset/account_event.json": {
       "path": "exports/dataset/account_event.json",
       "format": "JSON",
       "sha256": "783a1b9f1d38d0ab04431569860a83f0bf65ba0f40c86dc0c98ed29bba2dc37f",
       "bytes": 8947813,
-      "repository_status": "tracked_in_git_index"
+      "repository_status": "tracked_in_git_index",
+      "publication_intent": "dataset_export"
     },
     "exports/dataset/customer.csv": {
       "path": "exports/dataset/customer.csv",
       "format": "CSV",
       "sha256": "cb1034847d2991f9267511c2758a5cdaa92139918116c519a134e9bd09200079",
       "bytes": 1807817,
-      "repository_status": "tracked_in_git_index"
+      "repository_status": "tracked_in_git_index",
+      "publication_intent": "dataset_export"
     },
     "exports/dataset/customer.json": {
       "path": "exports/dataset/customer.json",
       "format": "JSON",
       "sha256": "d05344234f499f1ef71579580c1d748d98b2d8d81f44e32222920b8edd922607",
       "bytes": 4467761,
-      "repository_status": "tracked_in_git_index"
+      "repository_status": "tracked_in_git_index",
+      "publication_intent": "dataset_export"
     },
     "exports/dataset/expiry_batch.csv": {
       "path": "exports/dataset/expiry_batch.csv",
       "format": "CSV",
       "sha256": "3f40f07cef2797461b26c3a75881cacf7ecea92042cbc6e8c6f8caa15a5cfb22",
       "bytes": 9642745,
-      "repository_status": "tracked_in_git_index"
+      "repository_status": "tracked_in_git_index",
+      "publication_intent": "dataset_export"
     },
     "exports/dataset/expiry_batch.json": {
       "path": "exports/dataset/expiry_batch.json",
       "format": "JSON",
       "sha256": "cdd4d18941dc66918a970ea2cad851a9d502233fb7715aacea346afcaf1c82f8",
       "bytes": 24850480,
-      "repository_status": "tracked_in_git_index"
+      "repository_status": "tracked_in_git_index",
+      "publication_intent": "dataset_export"
     },
     "exports/dataset/loyalty_account.csv": {
       "path": "exports/dataset/loyalty_account.csv",
       "format": "CSV",
       "sha256": "a352e69ef3ff29b7292f9e82abaea8077cf13633eef85dafbb50b815d17132a8",
       "bytes": 1396983,
-      "repository_status": "tracked_in_git_index"
+      "repository_status": "tracked_in_git_index",
+      "publication_intent": "dataset_export"
     },
     "exports/dataset/loyalty_account.json": {
       "path": "exports/dataset/loyalty_account.json",
       "format": "JSON",
       "sha256": "9ba952fa798988b82fbbf4a0697f1b69f7552f2c9b62d93e2a0a0964b8c83b30",
       "bytes": 3636937,
-      "repository_status": "tracked_in_git_index"
+      "repository_status": "tracked_in_git_index",
+      "publication_intent": "dataset_export"
     },
     "exports/dataset/order_line.csv": {
       "path": "exports/dataset/order_line.csv",
       "format": "CSV",
       "sha256": "8e9c325f7779d82bc5e39c928f27cec6a7eafd62744bbaceac0ab59f8d8837c2",
       "bytes": 12823361,
-      "repository_status": "tracked_in_git_index"
+      "repository_status": "tracked_in_git_index",
+      "publication_intent": "dataset_export"
     },
     "exports/dataset/order_line.json": {
       "path": "exports/dataset/order_line.json",
       "format": "JSON",
       "sha256": "fe2f1b990e9229cdb8b709181d6486ee6b5dba7d83cbff73b9b1b9a22cb8b1e4",
       "bytes": 47867952,
-      "repository_status": "tracked_in_git_index"
+      "repository_status": "tracked_in_git_index",
+      "publication_intent": "dataset_export"
     },
     "exports/dataset/orders.csv": {
       "path": "exports/dataset/orders.csv",
       "format": "CSV",
       "sha256": "ead0529fe94f27a9117ccbbecf89195e09f41b4142cbdce19ae268777b8c6254",
       "bytes": 7454874,
-      "repository_status": "tracked_in_git_index"
+      "repository_status": "tracked_in_git_index",
+      "publication_intent": "dataset_export"
     },
     "exports/dataset/orders.json": {
       "path": "exports/dataset/orders.json",
       "format": "JSON",
       "sha256": "77d23b8c65703073027e0093f98d0d6e5e83f326e8b5c77ab48039e1f96fc7af",
       "bytes": 27054771,
-      "repository_status": "tracked_in_git_index"
+      "repository_status": "tracked_in_git_index",
+      "publication_intent": "dataset_export"
     },
     "exports/dataset/points_allocation.csv": {
       "path": "exports/dataset/points_allocation.csv",
       "format": "CSV",
       "sha256": "fdf678c8a47c6f27c3f8e8e90a06ffd5ad90f6a0d8dcb89979dd76fae28a0228",
       "bytes": 7146653,
-      "repository_status": "tracked_in_git_index"
+      "repository_status": "tracked_in_git_index",
+      "publication_intent": "dataset_export"
     },
     "exports/dataset/points_allocation.json": {
       "path": "exports/dataset/points_allocation.json",
       "format": "JSON",
       "sha256": "171a7e805684a76b46efb274dae72a3d25d87661540cad59057d5d18a8c162d2",
       "bytes": 19654162,
-      "repository_status": "tracked_in_git_index"
+      "repository_status": "tracked_in_git_index",
+      "publication_intent": "dataset_export"
     },
     "exports/dataset/points_transaction.csv": {
       "path": "exports/dataset/points_transaction.csv",
       "format": "CSV",
       "sha256": "9f35f76d77e4ae98c0b2a3ab796d5eb1fbecebeb26fc7500f87f89bdc179db77",
       "bytes": 54069242,
-      "repository_status": "local_only_not_tracked"
+      "repository_status": "local_only_not_tracked",
+      "publication_intent": "dataset_export"
     },
     "exports/dataset/points_transaction.json": {
       "path": "exports/dataset/points_transaction.json",
       "format": "JSON",
       "sha256": "f3d2357b46cbbaccfdf572690f398662da85fbb01e2ffc093ec0cc044651e479",
       "bytes": 148661903,
-      "repository_status": "local_only_not_tracked"
+      "repository_status": "local_only_not_tracked",
+      "publication_intent": "dataset_export"
     },
     "exports/dataset/redemption.csv": {
       "path": "exports/dataset/redemption.csv",
       "format": "CSV",
       "sha256": "cfe347ea5a5fec210a4bc9a1e368de4809cf6989a6a17ca4349b363ede207bd8",
       "bytes": 13653241,
-      "repository_status": "tracked_in_git_index"
+      "repository_status": "tracked_in_git_index",
+      "publication_intent": "dataset_export"
     },
     "exports/dataset/redemption.json": {
       "path": "exports/dataset/redemption.json",
       "format": "JSON",
       "sha256": "9682157ced7d851ac5547e6d41c16e509fa6dac774254008a4d0d3632231080f",
       "bytes": 42188666,
-      "repository_status": "tracked_in_git_index"
+      "repository_status": "tracked_in_git_index",
+      "publication_intent": "dataset_export"
     },
     "exports/dataset/return_event.csv": {
       "path": "exports/dataset/return_event.csv",
       "format": "CSV",
       "sha256": "b5eadadef50002cf6b8fb172869926d7ab6f6d38f83ce77343b39f204f970a1f",
       "bytes": 276465,
-      "repository_status": "tracked_in_git_index"
+      "repository_status": "tracked_in_git_index",
+      "publication_intent": "dataset_export"
     },
     "exports/dataset/return_event.json": {
       "path": "exports/dataset/return_event.json",
       "format": "JSON",
       "sha256": "3af507bf8938f2ae4144db8faf050d76adb30b8c052d6d8a4eceab2ae9102144",
       "bytes": 756587,
-      "repository_status": "tracked_in_git_index"
+      "repository_status": "tracked_in_git_index",
+      "publication_intent": "dataset_export"
     },
     "exports/dataset/reward.csv": {
       "path": "exports/dataset/reward.csv",
       "format": "CSV",
       "sha256": "52006cc234f9dbf3bb709c0a721e9dc655ec7aa7275589db82a37dd351de091a",
       "bytes": 144,
-      "repository_status": "tracked_in_git_index"
+      "repository_status": "tracked_in_git_index",
+      "publication_intent": "dataset_export"
     },
     "exports/dataset/reward.json": {
       "path": "exports/dataset/reward.json",
       "format": "JSON",
       "sha256": "080e974b42e391f48d2642dfbf341b6b306b62c1c78df8bd0d9dcf886ef61745",
       "bytes": 381,
-      "repository_status": "tracked_in_git_index"
+      "repository_status": "tracked_in_git_index",
+      "publication_intent": "dataset_export"
     },
     "exports/dataset/rule.csv": {
       "path": "exports/dataset/rule.csv",
       "format": "CSV",
       "sha256": "9fbfc236f92de1895efc21d7ec9abf8c2760f8fb24c0cc93d30ac845176991e7",
       "bytes": 139,
-      "repository_status": "tracked_in_git_index"
+      "repository_status": "tracked_in_git_index",
+      "publication_intent": "dataset_export"
     },
     "exports/dataset/rule.json": {
       "path": "exports/dataset/rule.json",
       "format": "JSON",
       "sha256": "e79efc96ec476a51f06e31cfcccd4c78e700e8d5c8fce319e3fbc0c4736f6270",
       "bytes": 225,
-      "repository_status": "tracked_in_git_index"
+      "repository_status": "tracked_in_git_index",
+      "publication_intent": "dataset_export"
     },
     "exports/dataset/tier.csv": {
       "path": "exports/dataset/tier.csv",
       "format": "CSV",
       "sha256": "bd8f9c51c50c49c1ec9fbef47064826a58ad79b78705159b1f3839cce1f7ce50",
       "bytes": 260,
-      "repository_status": "tracked_in_git_index"
+      "repository_status": "tracked_in_git_index",
+      "publication_intent": "dataset_export"
     },
     "exports/dataset/tier.json": {
       "path": "exports/dataset/tier.json",
       "format": "JSON",
       "sha256": "c13f1d5dcff1ed71b3d3da0c4cc8e6854c2acfd1571a5723525a887ccfa5d787",
       "bytes": 824,
-      "repository_status": "tracked_in_git_index"
+      "repository_status": "tracked_in_git_index",
+      "publication_intent": "dataset_export"
     },
     "exports/dataset/points_transaction.csv.gz": {
       "path": "exports/dataset/points_transaction.csv.gz",
       "format": "CSV_GZIP",
       "sha256": "e5fa89f0e077c172c730e54862d7f3ba58dbf67bbf0a1779cec681be7135922c",
       "bytes": 5212648,
-      "repository_status": "tracked_in_git_index"
+      "repository_status": "tracked_in_git_index",
+      "publication_intent": "dataset_export"
     },
     "exports/dataset/loyalty_dataset.sql": {
       "path": "exports/dataset/loyalty_dataset.sql",
       "format": "SQL",
-      "sha256": "038bb125c9e0c743c9b8f5f96c01b66b7de00f2ca61af5d95a55d1506c7596cc",
-      "bytes": 169143265,
-      "repository_status": "local_only_not_tracked"
+      "sha256": "cc18b69722ca9b60ba227accaa6e0b932e8af6eb59012ecf95b7f74fc8315585",
+      "bytes": 168044801,
+      "repository_status": "local_only_not_tracked",
+      "publication_intent": "local_uncompressed_sql_source"
+    },
+    "exports/dataset/loyalty_dataset.sql.gz": {
+      "path": "exports/dataset/loyalty_dataset.sql.gz",
+      "format": "SQL_GZIP",
+      "sha256": "0f14cc6bcdd7935e502c12c20099cbbe0e838e0ba8f74101f7b283d2cd7b0ad9",
+      "bytes": 14707310,
+      "repository_status": "tracked_in_git_index",
+      "publication_intent": "public_compressed_sql_export"
     }
   },
   "publication_summary": {
@@ -369,12 +405,14 @@
       "exports/dataset/expiry_batch.json",
       "exports/dataset/loyalty_account.csv",
       "exports/dataset/loyalty_account.json",
+      "exports/dataset/loyalty_dataset.sql.gz",
       "exports/dataset/order_line.csv",
       "exports/dataset/order_line.json",
       "exports/dataset/orders.csv",
       "exports/dataset/orders.json",
       "exports/dataset/points_allocation.csv",
       "exports/dataset/points_allocation.json",
+      "exports/dataset/points_transaction.csv.gz",
       "exports/dataset/redemption.csv",
       "exports/dataset/redemption.json",
       "exports/dataset/return_event.csv",
@@ -384,15 +422,26 @@
       "exports/dataset/rule.csv",
       "exports/dataset/rule.json",
       "exports/dataset/tier.csv",
-      "exports/dataset/tier.json",
-      "exports/dataset/points_transaction.csv.gz"
+      "exports/dataset/tier.json"
     ],
     "local_only_not_tracked": [
+      "exports/dataset/loyalty_dataset.sql",
       "exports/dataset/points_transaction.csv",
-      "exports/dataset/points_transaction.json",
-      "exports/dataset/loyalty_dataset.sql"
+      "exports/dataset/points_transaction.json"
     ],
     "important_note": "tracked_in_git_index means a file is staged or tracked locally by Git. It does not independently prove that the latest version has been pushed to GitHub. Verify the remote repository after pushing."
+  },
+  "sql_export": {
+    "uncompressed_path": "exports/dataset/loyalty_dataset.sql",
+    "compressed_path": "exports/dataset/loyalty_dataset.sql.gz",
+    "compression": "gzip",
+    "compression_level": 9,
+    "deterministic_timestamp": 0,
+    "decompression_verified": true,
+    "original_bytes": 168044801,
+    "compressed_bytes": 14707310,
+    "original_sha256": "cc18b69722ca9b60ba227accaa6e0b932e8af6eb59012ecf95b7f74fc8315585",
+    "compressed_sha256": "0f14cc6bcdd7935e502c12c20099cbbe0e838e0ba8f74101f7b283d2cd7b0ad9"
   },
   "manifest_note": "The manifest itself is excluded from its own exports hash list to avoid recursive self-hashing."
 }
