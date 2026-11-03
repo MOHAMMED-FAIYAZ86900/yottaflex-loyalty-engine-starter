@@ -1,0 +1,63 @@
+{
+  "database": "data\\repro_check_2.db",
+  "mode": "generation_and_validation",
+  "generation": {
+    "customers": 20000,
+    "orders": 100000,
+    "order_lines": 250319,
+    "transactions_by_type": {
+      "ACCRUAL": 100000,
+      "EXPIRY": 97486,
+      "REDEMPTION": 118422,
+      "REVERSAL": 2079
+    },
+    "points_transactions_total": 317987,
+    "return_events": 2079,
+    "return_refund_total_cents": 3190004264,
+    "return_reversed_points": 62327167,
+    "approved_redemptions": 118422,
+    "rejected_redemptions": 20100,
+    "concurrent_redemption_pairs": 100,
+    "expiry_transactions": 97486,
+    "tier_change_events": 31484,
+    "tier_downgrades_after_returns": 46,
+    "points_allocations": 120265,
+    "anomaly_labels": 965,
+    "anomaly_ground_truth_file": "reports\\anomaly_ground_truth.csv",
+    "seed": 20261022
+  },
+  "validation": {
+    "foreign_key_violations": 0,
+    "database_integrity": "ok",
+    "order_line_amount_mismatches": 0,
+    "qualifying_spend_mismatches": 0,
+    "invalid_reversal_references": 0,
+    "over_reversed_accruals": 0,
+    "redemption_allocation_mismatches": 0,
+    "invalid_allocation_transactions": 0,
+    "expiry_batch_mismatches": 0,
+    "negative_lot_balances": 0,
+    "duplicate_expiry_lots": 0,
+    "redemption_status_mismatches": 0,
+    "return_quantity_mismatches": 0,
+    "invalid_return_order_references": 0,
+    "return_reversal_mismatches": 0,
+    "excessive_return_refunds": 0,
+    "row_counts": {
+      "customer": 20000,
+      "loyalty_account": 20000,
+      "tier": 4,
+      "rule": 1,
+      "orders": 100000,
+      "order_line": 250319,
+      "points_transaction": 317987,
+      "points_allocation": 120265,
+      "reward": 3,
+      "redemption": 138522,
+      "expiry_batch": 97486,
+      "account_event": 31484,
+      "return_event": 2079
+    },
+    "passed": true
+  }
+}

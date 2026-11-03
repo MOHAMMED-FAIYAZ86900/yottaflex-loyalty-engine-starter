@@ -1,0 +1,268 @@
+{
+  "database": "data\\loyalty_phase4.db",
+  "tables": {
+    "account_event": {
+      "row_count": 31484,
+      "columns": [
+        "event_id",
+        "account_id",
+        "event_type",
+        "old_value",
+        "new_value",
+        "event_at",
+        "reason"
+      ]
+    },
+    "customer": {
+      "row_count": 20000,
+      "columns": [
+        "customer_id",
+        "full_name",
+        "email",
+        "signup_date",
+        "region",
+        "created_at"
+      ]
+    },
+    "expiry_batch": {
+      "row_count": 97486,
+      "columns": [
+        "expiry_batch_id",
+        "account_id",
+        "lot_id",
+        "points_transaction_id",
+        "expired_points",
+        "executed_at"
+      ]
+    },
+    "loyalty_account": {
+      "row_count": 20000,
+      "columns": [
+        "account_id",
+        "customer_id",
+        "tier_id",
+        "opened_at",
+        "status"
+      ]
+    },
+    "order_line": {
+      "row_count": 250319,
+      "columns": [
+        "order_line_id",
+        "order_id",
+        "sku",
+        "quantity",
+        "unit_price_cents",
+        "returned_quantity"
+      ]
+    },
+    "orders": {
+      "row_count": 100000,
+      "columns": [
+        "order_id",
+        "customer_id",
+        "order_date",
+        "currency",
+        "gross_amount_cents",
+        "discount_cents",
+        "status",
+        "qualifying_spend_cents"
+      ]
+    },
+    "points_allocation": {
+      "row_count": 120265,
+      "columns": [
+        "allocation_id",
+        "transaction_id",
+        "lot_id",
+        "points_allocated"
+      ]
+    },
+    "points_transaction": {
+      "row_count": 317987,
+      "columns": [
+        "transaction_id",
+        "account_id",
+        "customer_id",
+        "order_id",
+        "reference_transaction_id",
+        "transaction_type",
+        "points_delta",
+        "lot_id",
+        "created_at",
+        "expires_at",
+        "idempotency_key",
+        "notes"
+      ]
+    },
+    "redemption": {
+      "row_count": 138522,
+      "columns": [
+        "redemption_id",
+        "account_id",
+        "reward_id",
+        "points_transaction_id",
+        "requested_points",
+        "status",
+        "created_at",
+        "rejection_reason"
+      ]
+    },
+    "return_event": {
+      "row_count": 2079,
+      "columns": [
+        "return_id",
+        "order_id",
+        "order_line_id",
+        "returned_quantity",
+        "refund_amount_cents",
+        "reversed_points",
+        "reversal_transaction_id",
+        "created_at",
+        "reason"
+      ]
+    },
+    "reward": {
+      "row_count": 3,
+      "columns": [
+        "reward_id",
+        "reward_name",
+        "points_cost",
+        "is_active"
+      ]
+    },
+    "rule": {
+      "row_count": 1,
+      "columns": [
+        "rule_id",
+        "rule_name",
+        "rule_type",
+        "points_per_currency_unit",
+        "effective_from",
+        "effective_to",
+        "is_active"
+      ]
+    },
+    "tier": {
+      "row_count": 4,
+      "columns": [
+        "tier_id",
+        "tier_name",
+        "min_qualifying_spend_cents",
+        "earning_rate_bps",
+        "effective_from",
+        "effective_to"
+      ]
+    }
+  },
+  "exports": {
+    "exports\\dataset\\account_event.csv": {
+      "sha256": "c6fb773b73d6cb073419a2e6abffede97113f0e6670228fb17deb4c0e8528d81",
+      "bytes": 4130826
+    },
+    "exports\\dataset\\account_event.json": {
+      "sha256": "783a1b9f1d38d0ab04431569860a83f0bf65ba0f40c86dc0c98ed29bba2dc37f",
+      "bytes": 8947813
+    },
+    "exports\\dataset\\customer.csv": {
+      "sha256": "cb1034847d2991f9267511c2758a5cdaa92139918116c519a134e9bd09200079",
+      "bytes": 1807817
+    },
+    "exports\\dataset\\customer.json": {
+      "sha256": "d05344234f499f1ef71579580c1d748d98b2d8d81f44e32222920b8edd922607",
+      "bytes": 4467761
+    },
+    "exports\\dataset\\expiry_batch.csv": {
+      "sha256": "3f40f07cef2797461b26c3a75881cacf7ecea92042cbc6e8c6f8caa15a5cfb22",
+      "bytes": 9642745
+    },
+    "exports\\dataset\\expiry_batch.json": {
+      "sha256": "cdd4d18941dc66918a970ea2cad851a9d502233fb7715aacea346afcaf1c82f8",
+      "bytes": 24850480
+    },
+    "exports\\dataset\\loyalty_account.csv": {
+      "sha256": "a352e69ef3ff29b7292f9e82abaea8077cf13633eef85dafbb50b815d17132a8",
+      "bytes": 1396983
+    },
+    "exports\\dataset\\loyalty_account.json": {
+      "sha256": "9ba952fa798988b82fbbf4a0697f1b69f7552f2c9b62d93e2a0a0964b8c83b30",
+      "bytes": 3636937
+    },
+    "exports\\dataset\\order_line.csv": {
+      "sha256": "8e9c325f7779d82bc5e39c928f27cec6a7eafd62744bbaceac0ab59f8d8837c2",
+      "bytes": 12823361
+    },
+    "exports\\dataset\\order_line.json": {
+      "sha256": "fe2f1b990e9229cdb8b709181d6486ee6b5dba7d83cbff73b9b1b9a22cb8b1e4",
+      "bytes": 47867952
+    },
+    "exports\\dataset\\orders.csv": {
+      "sha256": "ead0529fe94f27a9117ccbbecf89195e09f41b4142cbdce19ae268777b8c6254",
+      "bytes": 7454874
+    },
+    "exports\\dataset\\orders.json": {
+      "sha256": "77d23b8c65703073027e0093f98d0d6e5e83f326e8b5c77ab48039e1f96fc7af",
+      "bytes": 27054771
+    },
+    "exports\\dataset\\points_allocation.csv": {
+      "sha256": "fdf678c8a47c6f27c3f8e8e90a06ffd5ad90f6a0d8dcb89979dd76fae28a0228",
+      "bytes": 7146653
+    },
+    "exports\\dataset\\points_allocation.json": {
+      "sha256": "171a7e805684a76b46efb274dae72a3d25d87661540cad59057d5d18a8c162d2",
+      "bytes": 19654162
+    },
+    "exports\\dataset\\points_transaction.csv": {
+      "sha256": "9f35f76d77e4ae98c0b2a3ab796d5eb1fbecebeb26fc7500f87f89bdc179db77",
+      "bytes": 54069242
+    },
+    "exports\\dataset\\points_transaction.json": {
+      "sha256": "f3d2357b46cbbaccfdf572690f398662da85fbb01e2ffc093ec0cc044651e479",
+      "bytes": 148661903
+    },
+    "exports\\dataset\\redemption.csv": {
+      "sha256": "cfe347ea5a5fec210a4bc9a1e368de4809cf6989a6a17ca4349b363ede207bd8",
+      "bytes": 13653241
+    },
+    "exports\\dataset\\redemption.json": {
+      "sha256": "9682157ced7d851ac5547e6d41c16e509fa6dac774254008a4d0d3632231080f",
+      "bytes": 42188666
+    },
+    "exports\\dataset\\return_event.csv": {
+      "sha256": "b5eadadef50002cf6b8fb172869926d7ab6f6d38f83ce77343b39f204f970a1f",
+      "bytes": 276465
+    },
+    "exports\\dataset\\return_event.json": {
+      "sha256": "3af507bf8938f2ae4144db8faf050d76adb30b8c052d6d8a4eceab2ae9102144",
+      "bytes": 756587
+    },
+    "exports\\dataset\\reward.csv": {
+      "sha256": "52006cc234f9dbf3bb709c0a721e9dc655ec7aa7275589db82a37dd351de091a",
+      "bytes": 144
+    },
+    "exports\\dataset\\reward.json": {
+      "sha256": "080e974b42e391f48d2642dfbf341b6b306b62c1c78df8bd0d9dcf886ef61745",
+      "bytes": 381
+    },
+    "exports\\dataset\\rule.csv": {
+      "sha256": "9fbfc236f92de1895efc21d7ec9abf8c2760f8fb24c0cc93d30ac845176991e7",
+      "bytes": 139
+    },
+    "exports\\dataset\\rule.json": {
+      "sha256": "e79efc96ec476a51f06e31cfcccd4c78e700e8d5c8fce319e3fbc0c4736f6270",
+      "bytes": 225
+    },
+    "exports\\dataset\\tier.csv": {
+      "sha256": "bd8f9c51c50c49c1ec9fbef47064826a58ad79b78705159b1f3839cce1f7ce50",
+      "bytes": 260
+    },
+    "exports\\dataset\\tier.json": {
+      "sha256": "c13f1d5dcff1ed71b3d3da0c4cc8e6854c2acfd1571a5723525a887ccfa5d787",
+      "bytes": 824
+    },
+    "exports\\dataset\\loyalty_dataset.sql": {
+      "sha256": "038bb125c9e0c743c9b8f5f96c01b66b7de00f2ca61af5d95a55d1506c7596cc",
+      "bytes": 169143265
+    }
+  }
+}

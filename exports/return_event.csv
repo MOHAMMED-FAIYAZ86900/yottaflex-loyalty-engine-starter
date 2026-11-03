@@ -1,0 +1,1 @@
+return_id,order_id,order_line_id,returned_quantity,refund_amount_cents,reversed_points,reversal_transaction_id,created_at,reason

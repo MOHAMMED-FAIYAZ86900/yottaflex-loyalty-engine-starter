@@ -1,0 +1,2 @@
+rule_id,rule_name,rule_type,points_per_currency_unit,effective_from,effective_to,is_active
+RULE-BASE,Base earn rule,EARN,1,2026-01-01,,1

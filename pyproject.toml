@@ -1,0 +1,16 @@
+[project]
+name = "yottaflex-loyalty-engine"
+version = "0.1.0"
+description = "Deterministic synthetic loyalty ledger challenge solution"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+loyalty = "loyalty.cli:main"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

@@ -1,0 +1,5 @@
+tier_id,tier_name,min_qualifying_spend_cents,earning_rate_bps,effective_from,effective_to
+TIER-BRONZE,Bronze,0,100,2026-01-01,
+TIER-GOLD,Gold,1500000,150,2026-01-01,
+TIER-PLATINUM,Platinum,3000000,200,2026-01-01,
+TIER-SILVER,Silver,500000,125,2026-01-01,

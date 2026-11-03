@@ -1,0 +1,6 @@
+scenario_id,expected_outcome,is_anomaly,ground_truth_reason,expected_difference_points,expected_shortfall_points,expected_reversed_points,expected_unique_expiry_per_account_lot,gross_based_threshold_reached,qualifying_based_threshold_reached,expected_tier_qualification
+EC-001,FLAG_BALANCE_MISMATCH,True,Reported account balance differs from the sum of its points ledger transactions.,100,,,,,,
+EC-002,REJECT_REDEMPTION,True,The redemption request exceeds the available points balance. It must be rejected without creating a redemption points debit.,,121270,,,,,
+EC-003,FLAG_MISSING_POINTS_REVERSAL,True,The returned order should reverse the points earned on the returned quantity. The injected faulty behavior reverses zero.,,,10450,,,,
+EC-004,REJECT_DUPLICATE_EXPIRY,True,The same account and points lot must not be expired more than once. The duplicate attempt must be idempotently rejected.,,,,True,,,
+EC-005,CALCULATE_TIER_FROM_QUALIFYING_SPEND,True,"Tier qualification must use qualifying spend after discounts and refunds, not gross order value.",,,,,True,False,DOES_NOT_QUALIFY

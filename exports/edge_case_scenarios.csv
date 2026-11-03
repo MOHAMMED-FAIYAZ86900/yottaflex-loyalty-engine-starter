@@ -1,0 +1,6 @@
+scenario_id,edge_case,entity_type,entity_id,customer_id,ledger_balance_points,reported_balance_points,injected_difference_points,source,account_id,available_points,requested_points,shortfall_points,source_rejection_reason,order_id,order_line_id,expected_reversed_points,simulated_actual_reversed_points,lot_id,original_expiry_transaction_id,original_expired_points,simulated_duplicate_expiry,gross_spend_cents,qualifying_spend_cents,tier_threshold_cents,tier_name_at_threshold,synthetic_threshold_fixture
+EC-001,BALANCE_DIFFERS_FROM_LEDGER,loyalty_account,LOY-CUST-000001,CUST-000001,0,100,100,Phase 4 points_transaction ledger,,,,,,,,,,,,,,,,,,
+EC-002,REDEMPTION_EXCEEDS_AVAILABLE_POINTS,redemption,RDM-2026-00000002,,,,,,LOY-CUST-000001,0,121270,121270,Competing request rejected after the other request consumed the available balance,,,,,,,,,,,,,
+EC-003,RETURNED_ORDER_KEEPS_ALL_POINTS,return_event,RET-2026-00000001,CUST-005505,,,,Phase 4 return_event,LOY-CUST-005505,,,,,ORD-2026-000004,LINE-00000006,10450,0,,,,,,,,,
+EC-004,POINTS_EXPIRE_TWICE,expiry_batch,EXP-2026-00220502,,,,,,LOY-CUST-006138,,,,,,,,,LOT-ORD-2026-000001,PTS-2026-00220502,75678,True,,,,,
+EC-005,TIER_USES_GROSS_INSTEAD_OF_QUALIFYING_SPEND,customer,CUST-001094,CUST-001094,,,,,,,,,,,,,,,,,,1933900,206243,500000,Silver,False

@@ -1,0 +1,39 @@
+[
+  {
+    "scenario_id": "EC-001",
+    "expected_outcome": "FLAG_BALANCE_MISMATCH",
+    "is_anomaly": true,
+    "ground_truth_reason": "Reported account balance differs from the sum of its points ledger transactions.",
+    "expected_difference_points": 100
+  },
+  {
+    "scenario_id": "EC-002",
+    "expected_outcome": "REJECT_REDEMPTION",
+    "is_anomaly": true,
+    "ground_truth_reason": "The redemption request exceeds the available points balance. It must be rejected without creating a redemption points debit.",
+    "expected_shortfall_points": 121270
+  },
+  {
+    "scenario_id": "EC-003",
+    "expected_outcome": "FLAG_MISSING_POINTS_REVERSAL",
+    "is_anomaly": true,
+    "ground_truth_reason": "The returned order should reverse the points earned on the returned quantity. The injected faulty behavior reverses zero.",
+    "expected_reversed_points": 10450
+  },
+  {
+    "scenario_id": "EC-004",
+    "expected_outcome": "REJECT_DUPLICATE_EXPIRY",
+    "is_anomaly": true,
+    "ground_truth_reason": "The same account and points lot must not be expired more than once. The duplicate attempt must be idempotently rejected.",
+    "expected_unique_expiry_per_account_lot": true
+  },
+  {
+    "scenario_id": "EC-005",
+    "expected_outcome": "CALCULATE_TIER_FROM_QUALIFYING_SPEND",
+    "is_anomaly": true,
+    "ground_truth_reason": "Tier qualification must use qualifying spend after discounts and refunds, not gross order value.",
+    "gross_based_threshold_reached": true,
+    "qualifying_based_threshold_reached": false,
+    "expected_tier_qualification": "DOES_NOT_QUALIFY"
+  }
+]

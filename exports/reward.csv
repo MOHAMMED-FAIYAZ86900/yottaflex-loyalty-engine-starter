@@ -1,0 +1,4 @@
+reward_id,reward_name,points_cost,is_active
+RWD-1000,Voucher INR 100,1000,1
+RWD-2500,Voucher INR 250,2500,1
+RWD-5000,Voucher INR 500,5000,1

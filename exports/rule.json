@@ -1,0 +1,11 @@
+[
+  {
+    "rule_id": "RULE-BASE",
+    "rule_name": "Base earn rule",
+    "rule_type": "EARN",
+    "points_per_currency_unit": 1,
+    "effective_from": "2026-01-01",
+    "effective_to": null,
+    "is_active": 1
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "reward_id": "RWD-1000",
+    "reward_name": "Voucher INR 100",
+    "points_cost": 1000,
+    "is_active": 1
+  },
+  {
+    "reward_id": "RWD-2500",
+    "reward_name": "Voucher INR 250",
+    "points_cost": 2500,
+    "is_active": 1
+  },
+  {
+    "reward_id": "RWD-5000",
+    "reward_name": "Voucher INR 500",
+    "points_cost": 5000,
+    "is_active": 1
+  }
+]
