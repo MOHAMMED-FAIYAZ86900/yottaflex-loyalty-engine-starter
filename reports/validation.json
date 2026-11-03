@@ -1,31 +1,7 @@
 {
-  "database": "data\\repro_check_2.db",
-  "mode": "generation_and_validation",
-  "generation": {
-    "customers": 20000,
-    "orders": 100000,
-    "order_lines": 250319,
-    "transactions_by_type": {
-      "ACCRUAL": 100000,
-      "EXPIRY": 97486,
-      "REDEMPTION": 118422,
-      "REVERSAL": 2079
-    },
-    "points_transactions_total": 317987,
-    "return_events": 2079,
-    "return_refund_total_cents": 3190004264,
-    "return_reversed_points": 62327167,
-    "approved_redemptions": 118422,
-    "rejected_redemptions": 20100,
-    "concurrent_redemption_pairs": 100,
-    "expiry_transactions": 97486,
-    "tier_change_events": 31484,
-    "tier_downgrades_after_returns": 46,
-    "points_allocations": 120265,
-    "anomaly_labels": 965,
-    "anomaly_ground_truth_file": "reports\\anomaly_ground_truth.csv",
-    "seed": 20261022
-  },
+  "database": "data\\loyalty_phase4.db",
+  "mode": "validation_only",
+  "generation": null,
   "validation": {
     "foreign_key_violations": 0,
     "database_integrity": "ok",
