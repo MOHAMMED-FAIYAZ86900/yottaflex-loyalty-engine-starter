@@ -22,3 +22,6 @@ backup_generator_phase3.py
 .venv/
 __pycache__/
 .pytest_cache/
+exports/dataset/loyalty_dataset.sql
+exports/dataset/points_transaction.csv
+exports/points_transaction.csv
